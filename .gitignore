@@ -1,1 +1,9 @@
+api/__pychache__
+chroma_db/
 config/settings.py
+config/
+core/__pychache__
+database/__pychache__
+temp/
+ui/__pychache__
+venv/
