@@ -48,7 +48,8 @@ Bearbeite die Datei `config/settings.py` und setze die erforderlichen API-Keys.
 
 1. Starte die Anwendung:
 ```
-streamlit run app.py
+streamlit run app.py aktuell nur über venv mit folgendem Befehl: venv\Scripts\activate
+
 ```
 
 2. Öffne die Anwendung im Browser (normalerweise unter http://localhost:8501).
