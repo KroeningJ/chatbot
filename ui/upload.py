@@ -1,7 +1,7 @@
 import streamlit as st
 from api.confluence import load_confluence_documents
 from api.pdf import load_pdf_document, save_uploaded_pdf
-from api.miro import fetch_miro_data, extract_text_from_miro
+from api.miro import fetch_miro_data, extract_text_from_miro, extract_documents_from_miro
 
 def render_upload_ui(vectorstore):
     """
@@ -80,8 +80,8 @@ def render_upload_ui(vectorstore):
                 try:
                     miro_data = fetch_miro_data(miro_board_id)
                     if miro_data:
-                        texts = extract_text_from_miro(miro_data)
-                        if texts and vectorstore.add_texts(texts):
+                        documents = extract_documents_from_miro(miro_data, miro_board_id)  # statt: texts = extract_text_from_miro(miro_data)
+                        if documents and vectorstore.add_documents(documents):
                             st.success("Miro-Daten erfolgreich verarbeitet!")
                             miro_status = True
                             success = True

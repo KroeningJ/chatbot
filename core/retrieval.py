@@ -34,9 +34,19 @@ def query_knowledge_base(qa_chain, query):
     try:
         result = qa_chain(query)
         
+        # Quellen deduplizieren - nur einzigartige Quellen anzeigen
+        sources = []
+        seen_sources = set()
+        
+        for doc in result.get('source_documents', []):
+            source = doc.metadata.get('source', 'Unbekannt')
+            if source not in seen_sources:
+                sources.append(source)
+                seen_sources.add(source)
+        
         return {
             "answer": result['result'],
-            "sources": [doc.metadata.get('source', 'Unbekannt') for doc in result.get('source_documents', [])]
+            "sources": sources
         }
     except Exception as e:
         raise Exception(f"Fehler bei der Abfrage: {e}")
