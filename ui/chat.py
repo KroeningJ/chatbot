@@ -86,20 +86,9 @@ def render_chat_ui(retriever):
                     })
                     
                     # Antwort in Datenbank speichern
-                    message_id = st.session_state.datastore.add_message(
+                    st.session_state.datastore.add_message(
                         st.session_state.session_id,
                         "assistant",
                         result['answer'],
                         result['sources']
                     )
-                    
-                    # Feedback-Buttons
-                    col1, col2, col3 = st.columns([1, 1, 8])
-                    with col1:
-                        if st.button("👍", key=f"thumbs_up_{message_id}"):
-                            st.session_state.datastore.add_rating(message_id, 5)
-                            st.success("Danke für Ihr Feedback!")
-                    with col2:
-                        if st.button("👎", key=f"thumbs_down_{message_id}"):
-                            st.session_state.datastore.add_rating(message_id, 1)
-                            st.info("Danke für Ihr Feedback. Wir arbeiten an Verbesserungen!")

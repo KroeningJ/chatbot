@@ -41,18 +41,6 @@ class ChatDataStore:
                 )
             ''')
             
-            # Tabelle für Bewertungen (für spätere Evaluation)
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS message_ratings (
-                    rating_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    message_id INTEGER NOT NULL,
-                    rating INTEGER,
-                    feedback TEXT,
-                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    FOREIGN KEY (message_id) REFERENCES chat_messages(message_id)
-                )
-            ''')
-            
             conn.commit()
     
     def create_session(self, session_id, active_sources=None):
@@ -180,30 +168,6 @@ class ChatDataStore:
                 return sessions
         except Exception as e:
             raise Exception(f"Fehler beim Abrufen der Sessions: {e}")
-    
-    def add_rating(self, message_id, rating, feedback=None):
-        """
-        Fügt eine Bewertung für eine Nachricht hinzu.
-        
-        Args:
-            message_id (int): Nachrichten-ID
-            rating (int): Bewertung (z.B. 1-5)
-            feedback (str): Optionales Feedback
-            
-        Returns:
-            bool: True bei Erfolg
-        """
-        try:
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
-                    INSERT INTO message_ratings (message_id, rating, feedback)
-                    VALUES (?, ?, ?)
-                ''', (message_id, rating, feedback))
-                conn.commit()
-                return True
-        except Exception as e:
-            raise Exception(f"Fehler beim Speichern der Bewertung: {e}")
     
     def get_messages_for_evaluation(self, limit=None):
         """
