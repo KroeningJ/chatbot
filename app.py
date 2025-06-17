@@ -12,43 +12,33 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-def render_evaluation_section():
-    """Rendert die Evaluations-Sektion in der Sidebar"""
-    with st.sidebar.expander("📊 Evaluation & Analytics"):
-        st.markdown("### System-Evaluation")
+def render_session_management():
+    """Rendert die Session-Management Sektion in der Sidebar"""
+    with st.sidebar.expander("💬 Chat-Sessions"):
+        st.markdown("### Session-Verwaltung")
         
-        if st.button("RAGAS Evaluation durchführen"):
-            try:
-                from evaluation.analytics import RAGASEvaluator
-                evaluator = RAGASEvaluator()
-                
-                with st.spinner("Führe Evaluation durch..."):
-                    results = evaluator.evaluate_rag_system()
-                    report = evaluator.generate_evaluation_report(results)
-                    filepath = evaluator.save_evaluation_results(results)
-                
-                st.success(f"Evaluation abgeschlossen! Ergebnisse gespeichert unter: {filepath}")
-                
-                # Zeige Zusammenfassung
-                st.markdown("#### Ergebnisse:")
-                for metric, info in results['metrics'].items():
-                    st.metric(
-                        label=metric.replace('_', ' ').title(),
-                        value=f"{info['score']:.3f}"
-                    )
-                    
-            except Exception as e:
-                st.error(f"Fehler bei der Evaluation: {e}")
+        # Neue Session Button
+        if st.button("🔄 Neue Chat-Session starten"):
+            # Reset Chat-Verlauf
+            st.session_state.messages = []
+            # Neue Session-ID generieren
+            import uuid
+            st.session_state.session_id = str(uuid.uuid4())
+            # Neue Session in Datenbank erstellen
+            st.session_state.datastore.create_session(
+                st.session_state.session_id,
+                st.session_state.data_sources
+            )
+            st.rerun()
         
-        # Chat-Historie anzeigen
-        st.markdown("### Chat-Historie")
-        if st.button("Zeige alle Sessions"):
+        # Alle Sessions anzeigen
+        if st.button("📋 Alle Sessions anzeigen"):
             try:
-                datastore = ChatDataStore()
-                sessions = datastore.get_all_sessions()
+                sessions = st.session_state.datastore.get_all_sessions()
                 
                 if sessions:
-                    for session in sessions[:5]:  # Zeige nur die letzten 5
+                    st.markdown("#### Letzte 10 Sessions:")
+                    for session in sessions[:10]:
                         st.text(f"Session: {session['session_id'][:8]}...")
                         st.text(f"Nachrichten: {session['message_count']}")
                         st.text(f"Letzte Aktivität: {session['last_updated']}")
@@ -100,22 +90,8 @@ def main():
             if sources_text:
                 st.info(f"Aktive Datenquellen: {', '.join(sources_text)}")
         
-        # Evaluation & Analytics Sektion
-        render_evaluation_section()
-        
-        # Neue Session Button
-        if st.button("🔄 Neue Chat-Session starten"):
-            # Reset Chat-Verlauf
-            st.session_state.messages = []
-            # Neue Session-ID generieren
-            import uuid
-            st.session_state.session_id = str(uuid.uuid4())
-            # Neue Session in Datenbank erstellen
-            st.session_state.datastore.create_session(
-                st.session_state.session_id,
-                st.session_state.data_sources
-            )
-            st.rerun()
+        # Session-Management Sektion
+        render_session_management()
     
     # Render Chat-UI
     render_chat_ui(st.session_state.vectorstore.get_retriever())
