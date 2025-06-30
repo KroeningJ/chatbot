@@ -9,6 +9,7 @@ Verwendung:
 """
 
 import os
+import csv
 import sys
 from datetime import datetime
 
@@ -311,7 +312,7 @@ class RAGEvaluator:
         
         # Empfehlungen
         self._print_recommendations(metric_scores)
-        
+        self.save_to_csv(getattr(self, '_current_testfall_nr', 1), qa_pair, metric_scores)
         print("="*80)
     
     def _get_rating(self, score):
@@ -366,6 +367,68 @@ class RAGEvaluator:
             for rec in recommendations:
                 print(rec)
                 print()
+
+     
+    def save_to_csv(self, testfall_nr, qa_pair, metric_scores):
+        """Speichert Ergebnisse in CSV-Datei (append-Modus)"""
+        
+        # CSV-Datei im evaluation-Ordner
+        csv_file = os.path.join(current_dir, "evaluation_results.csv")
+        
+        # Prüfen ob Datei existiert (für Header)
+        file_exists = os.path.exists(csv_file)
+        
+        try:
+            with open(csv_file, 'a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file, delimiter=';')  # Semikolon für deutsche Excel-Kompatibilität
+                
+                # Header nur beim ersten Mal schreiben
+                if not file_exists:
+                    header = [
+                        'Timestamp',
+                        'Testfall_Nr',
+                        'Frage',
+                        'Generierte_Antwort',
+                        'Erwartete_Antwort',
+                        'Faithfulness',
+                        'Answer_Relevancy',
+                        'Context_Precision',
+                        'Context_Recall',
+                        'Durchschnitt',
+                        'Quellen'
+                    ]
+                    writer.writerow(header)
+                
+                # Timestamp
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                # Durchschnitt berechnen
+                avg_score = sum(metric_scores.values()) / len(metric_scores) if metric_scores else 0
+                
+                # Quellen zusammenfassen
+                sources = ', '.join(qa_pair.get('sources', [])) if qa_pair.get('sources') else 'Keine'
+                
+                # Datenzeile
+                row = [
+                    timestamp,
+                    testfall_nr,
+                    qa_pair['question'],
+                    qa_pair['answer'],
+                    qa_pair['ground_truth'],
+                    metric_scores.get('faithfulness', 0),
+                    metric_scores.get('answer_relevancy', 0),
+                    metric_scores.get('context_precision', 0),
+                    metric_scores.get('context_recall', 0),
+                    avg_score,
+                    sources
+                ]
+                
+                writer.writerow(row)
+                
+            print(f"💾 Ergebnisse in CSV gespeichert: {csv_file}")
+            
+        except Exception as e:
+            print(f"❌ Fehler beim Speichern in CSV: {e}")           
     
     def run_evaluation(self):
         """Führt die komplette Evaluation durch"""
@@ -383,6 +446,7 @@ class RAGEvaluator:
             
             # Aktuellen Testfall setzen
             self.test_case = test_case
+            self._current_testfall_nr = i  # Für CSV Export
             
             # Antwort generieren
             qa_pair = self.generate_answer()
@@ -396,10 +460,14 @@ class RAGEvaluator:
                 print(f"❌ Testfall {i} fehlgeschlagen: RAGAS-Evaluation nicht möglich.")
                 continue
             
-            # Ergebnisse anzeigen
+            # Ergebnisse anzeigen (inklusive CSV Export)
             self.print_results(results, qa_pair)
             
             print(f"✅ Testfall {i} abgeschlossen")
+        
+        # Abschlussmeldung
+        csv_file = os.path.join(current_dir, "evaluation_results.csv")
+        print(f"\n📊 Alle Ergebnisse wurden gespeichert in: {csv_file}")
         
         return True
 
