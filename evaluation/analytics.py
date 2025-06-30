@@ -76,11 +76,58 @@ class RAGEvaluator:
         ]
         
         # Testfall
-        self.test_case = {
-            "question": "Wer ist der CTO von TechFlow Solutions und wie kann ich ihn kontaktieren?",
-            "expected_answer": "Der CTO ist Dr. Michael Schmidt. Er ist erreichbar unter michael.schmidt@techflow-solutions.de, Telefon +49 30 555-0111, Mobil +49 175 555-2011, Standort Berlin Büro 3.02, Slack @michael.schmidt.",
-            "reference": ["confluence"]
-        }
+        self.test_cases = [
+              {
+                "question": "Wann beginnt mein Arbeitsverhältnis als Senior Software Engineer bei TechFlow Solutions und wie hoch ist mein Bruttogehalt inklusive möglichem Bonus?",
+                "expected_answer": "Das Arbeitsverhältnis beginnt am 01.09.2025. Das Bruttomonatsgehalt beträgt €5.800. Zusätzlich wird ein jährlicher Bonus von bis zu 10% des Jahresgehalts gewährt, abhängig von Unternehmens- und individueller Leistung. Das entspricht einem maximalen Jahresbonus von €6.960 (10% von €69.600 Jahresgehalt).",
+                "reference": ["pdf"]
+            },
+            {
+                "question": "Bis zu welchem Wert sind Geschenke bei TechFlow Solutions erlaubt und wen kann ich bei Compliance-Verstößen kontaktieren?",
+                "expected_answer": "Geschenke bis €50 sind erlaubt, alle Geschenke über €25 müssen dokumentiert werden. Geschäftsessen bis €100 pro Person sind zulässig. Bei Compliance-Verstößen können Sie sich wenden an: Compliance-Hotline 030-555-COMP (2667), E-Mail compliance@techflow-solutions.de oder persönlich an Compliance Officer Lisa Schmidt.",
+                "reference": ["pdf"]
+            },
+            {
+                "question": "Wer ist mein Buddy/Mentor während des Onboardings und welche wichtigen Ziele muss ich in den ersten 60 Tagen erreichen?",
+                "expected_answer": "Ihr Buddy/Mentor ist David Kim (Senior Tech Lead), erreichbar unter d.kim@techflow-solutions.de und Slack @david.kim. Die 60-Tage-Ziele umfassen: eigenständige Feature-Entwicklung, Durchführung von Code-Reviews, vertiefte Produktkenntnisse und das Verstehen von Architektur-Entscheidungen.",
+                "reference": ["pdf"]
+            },
+            {
+                "question": "Welche kritischen Alert-Schwellenwerte gelten für die CloudSync API und wer ist für den Wissenstransfer verantwortlich?",
+                "expected_answer": "Kritische Alert-Schwellenwerte für die CloudSync API: API Response Time >5000ms für >2 Minuten, Fehlerrate >15% für >1 Minute, kompletter Service-Ausfall (0% Verfügbarkeit). Der Wissenstransfer wird von Kevin Schulz (DevOps Engineer) an Martin Fischer (IT Lead) übertragen. Das System ist als KRITISCH eingestuft und erfordert sofortige Übergabe.",
+                "reference": ["pdf"]
+            },
+            {
+                "question": "Wann ist der bestätigte Beta-Launch-Termin für CloudSync und welche Pricing-Strategie wurde für das Freemium-Modell festgelegt?",
+                "expected_answer": "Der Beta-Launch-Termin wurde für den 15. Juni 2025 mit 50 ausgewählten Kunden bestätigt. Die Pricing-Strategie sieht ein Freemium-Modell mit 5GB Speicher-Limit vor, und $15/Monat für unbegrenzten Speicher. Der Feature Freeze ist für den 1. Mai 2025 geplant.",
+                "reference": ["confluence"]
+            },
+            {
+                "question": "Wer ist der CTO von TechFlow Solutions und wie kann ich ihn kontaktieren? Außerdem benötige ich die Kontaktdaten des IT-Support für einen Notfall.",
+                "expected_answer": "Der CTO ist Dr. Michael Schmidt. Er ist erreichbar unter: E-Mail michael.schmidt@techflow-solutions.de, Telefon +49 30 555-0111, Mobil +49 175 555-2011, Standort Berlin Büro 3.02, Slack @michael.schmidt, GitHub @mschmidt-techflow. Für IT-Notfälle: 24/7 IT-Support unter +49 30 555-0199, oder Martin Fischer (IT Lead) unter martin.fischer@techflow-solutions.de, Telefon +49 30 555-0511, Mobil +49 175 555-2511.",
+                "reference": ["confluence"]
+            },
+            {
+                "question": "Wann wurde TechFlow Solutions gegründet, wie viele Mitarbeiter arbeiten dort und welcher Technologie-Stack wird verwendet?",
+                "expected_answer": "TechFlow Solutions wurde 2018 in Berlin gegründet und beschäftigt 150 Experten. Der Technologie-Stack umfasst: Frontend (React, TypeScript), Backend (Java Spring Boot, Python), Cloud (AWS, Docker, Kubernetes) und Datenbanken (PostgreSQL, MongoDB). Das Unternehmen entwickelt innovative Workflow-Management-Software für mittelständische Unternehmen.",
+                "reference": ["confluence"]
+            },
+            {
+                "question": "Wie viele Mitarbeiter arbeiten an den verschiedenen TechFlow Solutions Standorten und welche Remote-Work-Regelungen gelten?",
+                "expected_answer": "TechFlow Solutions hat zwei Standorte: Berlin (Hauptsitz) mit 110 Mitarbeitern und München (Development Hub) mit 40 Mitarbeitern. Die Remote Work Policy ermöglicht ein Hybrid-Arbeitsmodell mit bis zu 3 Tagen pro Woche remote. Für Senior-Rollen sind Vollremote-Optionen nach Vereinbarung möglich. Quarterly Team-Events sorgen für Remote-Integration.",
+                "reference": ["miro"]
+            },
+            {
+                "question": "Welche konkreten Expansionspläne hat TechFlow Solutions für Q2 und Q4 2025 und wie funktionieren die Eskalationswege bei technischen Problemen?",
+                "expected_answer": "Für Q2 2025 plant TechFlow +15 Backend-Entwickler für CloudSync, +5 Sales Representatives (International) und +3 Customer Success Manager. Q4 2025 Ziel: 180 Mitarbeitende, dritter Standort (Frankfurt oder Hamburg) und ein Data Science Team (8 Personen). Bei technischen Issues gilt der Eskalationsweg: Team Lead → CTO. Management-Meetings finden statt: Daily Standups (9:30 Uhr), Weekly Leadership (Dienstag 14:00 Uhr), Monthly All-Hands (letzter Freitag 16:00 Uhr).",
+                "reference": ["miro"]
+            },
+            {
+                "question": "An wen gibt Sandra Weber einen direct report und welche beiden Abteilungen müssen von Thomas Wagner gemanaged werden?",
+                "expected_answer": "Sandra Weber gibt einen direct report an Lisa Müller. Thomas Wagner (CFO) managed die Abteilungen Sales & Marketing und Customer Support.",
+                "reference": ["miro"]
+            }
+        ]
         
         print("✅ Evaluator erfolgreich initialisiert")
     
@@ -322,26 +369,37 @@ class RAGEvaluator:
     
     def run_evaluation(self):
         """Führt die komplette Evaluation durch"""
-        print("🎯 Starte RAG Chatbot Evaluation (Testfall)")
+        print("🎯 Starte RAG Chatbot Evaluation (10 Testfälle)")
         print("="*50)
         
         # 1. Vektorspeicher prüfen
         if not self.check_vectorstore():
             return False
         
-        # 2. Antwort generieren
-        qa_pair = self.generate_answer()
-        if not qa_pair:
-            print("❌ Keine Antwort konnte generiert werden.")
-            return False
-        
-        # 3. RAGAS Evaluation
-        results = self.run_ragas_evaluation(qa_pair)
-        if not results:
-            return False
-        
-        # 4. Ergebnisse anzeigen
-        self.print_results(results, qa_pair)
+        # 2. Alle Testfälle durchlaufen
+        for i, test_case in enumerate(self.test_cases, 1):
+            print(f"\n📝 TESTFALL {i}/10")
+            print("-" * 40)
+            
+            # Aktuellen Testfall setzen
+            self.test_case = test_case
+            
+            # Antwort generieren
+            qa_pair = self.generate_answer()
+            if not qa_pair:
+                print(f"❌ Testfall {i} fehlgeschlagen: Keine Antwort konnte generiert werden.")
+                continue
+            
+            # RAGAS Evaluation
+            results = self.run_ragas_evaluation(qa_pair)
+            if not results:
+                print(f"❌ Testfall {i} fehlgeschlagen: RAGAS-Evaluation nicht möglich.")
+                continue
+            
+            # Ergebnisse anzeigen
+            self.print_results(results, qa_pair)
+            
+            print(f"✅ Testfall {i} abgeschlossen")
         
         return True
 
