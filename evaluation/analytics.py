@@ -79,8 +79,8 @@ class RAGEvaluator:
         # Testfall
         self.test_cases = [
               {
-                "question": "Wann beginnt mein Arbeitsverhältnis als Senior Software Engineer bei TechFlow Solutions und wie hoch ist mein Bruttogehalt inklusive möglichem Bonus?",
-                "expected_answer": "Das Arbeitsverhältnis beginnt am 01.09.2025. Das Bruttomonatsgehalt beträgt €5.800. Zusätzlich wird ein jährlicher Bonus von bis zu 10% des Jahresgehalts gewährt, abhängig von Unternehmens- und individueller Leistung. Das entspricht einem maximalen Jahresbonus von €6.960 (10% von €69.600 Jahresgehalt).",
+                "question": "Wie hoch ist das vertraglich geregelte Bruttomonatsgehalt von Jens Kröning und gibt es weitere Regelungen zu Boni?",
+                "expected_answer": "Das Bruttomonatsgehalt von Jens Kröning beträgt € 5.800. Zusätzlich gewährt der Arbeitgeber einen jährlichen Bonus in Höhe von bis zu 10% des Jahresgehalts, abhängig von Unternehmens- und individueller Leistung.",
                 "reference": ["pdf"]
             },
             {
@@ -124,7 +124,7 @@ class RAGEvaluator:
                 "reference": ["miro"]
             },
             {
-                "question": "An wen gibt Sandra Weber einen direct report und welche beiden Abteilungen müssen von Thomas Wagner gemanaged werden?",
+                "question": "Nenn mir die direkte Berichtslinie von Sandra Weber und Ihren Fokus.",
                 "expected_answer": "Sandra Weber gibt einen direct report an Lisa Müller. Thomas Wagner (CFO) managed die Abteilungen Sales & Marketing und Customer Support.",
                 "reference": ["miro"]
             }

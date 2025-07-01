@@ -15,3 +15,4 @@ evaluation/__pycache__/analytics.cpython-311.pyc
 database/__pycache__/datastore.cpython-311.pyc
 chroma_db/chroma.sqlite3
 evaluation/evaluation_results.csv
+evaluation/umlaut_test.py
