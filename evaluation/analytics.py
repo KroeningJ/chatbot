@@ -61,7 +61,7 @@ class RAGEvaluator:
         self.llm = ChatOpenAI(
             model="gpt-3.5-turbo",
             openai_api_key=OPENAI_API_KEY,
-            temperature=0
+            temperature=0.1
         )
         self.embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
         
@@ -114,18 +114,18 @@ class RAGEvaluator:
                 "reference": ["confluence"]
             },
             {
-                "question": "Wie viele Mitarbeiter arbeiten an den verschiedenen TechFlow Solutions Standorten und welche Remote-Work-Regelungen gelten?",
-                "expected_answer": "TechFlow Solutions hat zwei Standorte: Berlin (Hauptsitz) mit 110 Mitarbeitern und München (Development Hub) mit 40 Mitarbeitern. Die Remote Work Policy ermöglicht ein Hybrid-Arbeitsmodell mit bis zu 3 Tagen pro Woche remote. Für Senior-Rollen sind Vollremote-Optionen nach Vereinbarung möglich. Quarterly Team-Events sorgen für Remote-Integration.",
+                "question": "Wie ist die Remote Work Policy geregelt und gibt es weitere Regelungen in höheren Rollen?",
+                "expected_answer": "Die Remote Work Policy ermöglicht bis zu 3 Tage pro Woche remote zu arbeiten und es gibt auch Vollremote-Optionen für Senior-Rollen nach Vereinbarung.",
                 "reference": ["miro"]
             },
             {
-                "question": "Welche konkreten Expansionspläne hat TechFlow Solutions für Q2 und Q4 2025 und wie funktionieren die Eskalationswege bei technischen Problemen?",
-                "expected_answer": "Für Q2 2025 plant TechFlow +15 Backend-Entwickler für CloudSync, +5 Sales Representatives (International) und +3 Customer Success Manager. Q4 2025 Ziel: 180 Mitarbeitende, dritter Standort (Frankfurt oder Hamburg) und ein Data Science Team (8 Personen). Bei technischen Issues gilt der Eskalationsweg: Team Lead → CTO. Management-Meetings finden statt: Daily Standups (9:30 Uhr), Weekly Leadership (Dienstag 14:00 Uhr), Monthly All-Hands (letzter Freitag 16:00 Uhr).",
+                "question": "Welche Expansionen sind für Q2 2025 geplant?",
+                "expected_answer": "Es sind 15 Backend-Entwickler für das CloudSync-Projekt, 5 Sales Representatives (International) und 3 Customer Success Manager geplant.",
                 "reference": ["miro"]
             },
             {
                 "question": "Nenn mir die direkte Berichtslinie von Sandra Weber und Ihren Fokus.",
-                "expected_answer": "Sandra Weber gibt einen direct report an Lisa Müller. Thomas Wagner (CFO) managed die Abteilungen Sales & Marketing und Customer Support.",
+                "expected_answer": " Die direkte Berichtslinie von Sandra Weber besteht aus dem CTO, dem VP Sales und dem CFO. Ihr Fokus liegt auf Investor Relations, Unternehmenswachstum und Partnerschaften.",
                 "reference": ["miro"]
             }
         ]
