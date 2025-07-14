@@ -1,6 +1,6 @@
 # Masterarbeit „Wissensmanagement in Off- und
 Onboardingprozessen: Implementierung
-und Evaluierung eines Chatbot-Prototyps“ - Daten
+und Evaluierung eines Chatbot-Prototyps“ 
 
 ## Autor*innen
 
@@ -79,4 +79,8 @@ Methodik: Anwendung von Design Science Research (DSR) nach Hevner et al. und Pef
 ## Ordnerstruktur und Ergebnisse
 
 Die Ergebnisse der Evaluation werden lokal als evaluation_results.csv gespeichert. 
+
+## Anwendungshinweis
+
+Die entwickelte Prototyp-Lösung läuft in einer virtuellen Umgebung. Dafür zuerst venv (virtual enviroment) insatllieren und danach folgenden Befehl in das Terminal eingeben: venv\Scripts\activate
 
