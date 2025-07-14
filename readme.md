@@ -1,6 +1,4 @@
-# Masterarbeit „Wissensmanagement in Off- und
-Onboardingprozessen: Implementierung
-und Evaluierung eines Chatbot-Prototyps“ 
+# Masterarbeit „Wissensmanagement in Off- und Onboardingprozessen: Implementierung und Evaluierung eines Chatbot-Prototyps“ 
 
 ## Autor*innen
 
