@@ -1,73 +1,82 @@
-// Für später
+# Masterarbeit „Wissensmanagement in Off- und
+Onboardingprozessen: Implementierung
+und Evaluierung eines Chatbot-Prototyps“ - Daten
 
-# Wissens-Assistent
+## Autor*innen
 
-Ein interaktiver Assistent zur Indexierung und Abfrage von Wissen aus verschiedenen Quellen wie Confluence, PDF-Dokumenten und Miro-Boards.
+**Authorin:**
+Jens Kröning
+Masterstudiengang Wirtschaftskommunikation
 
-## Projektstruktur
+**Betreurer:**
+Prof. Dr. Olga Willner
+ORCID: 0002-3456-3021-0093 ANPASSEN
+Kontaktadresse: Olga.Willner@HTW-Berlin.de
 
-```
-📂 projekt-root/
-│── 📂 src/                # Hauptcode des Projekts
-│   │── 📂 api/            # API-Handler für verschiedene Datenquellen
-│   │   │── confluence.py  # Funktionen zur Confluence-Datenextraktion
-│   │   │── miro.py        # Funktionen zur Miro-Datenextraktion
-│   │   │── pdf.py         # Funktionen zur Verarbeitung von PDFs
-│   │── 📂 database/       # Datenbankschnittstellen
-│   │   │── vectorstore.py # ChromaDB-Verwaltung
-│   │── 📂 ui/             # Streamlit UI-Module
-│   │   │── chat.py        # Chatbot-Interface
-│   │   │── upload.py      # Datei-Upload-UI
-│   │── 📂 core/           # Kernfunktionen & Logik
-│   │   │── embeddings.py  # OpenAI Embeddings-Verwaltung
-│   │   │── retrieval.py   # Retrieval-Mechanismus für Abfragen
-│── 📂 config/             # Konfigurationsdateien
-│   │── settings.py        # API-Keys & allgemeine Konfigs
-│── app.py                 # Haupt-Streamlit-Anwendung
-│── requirements.txt       # Abhängigkeiten
-│── README.md              # Projektdokumentation
-```
+**Institution:**
+Hochschule für Technik und Wirtschaft Berlin
+ROR: <https://ror.org/01xzwj424>
 
-## Installation
+## Datensatz
 
-1. Repository klonen:
-```
-git clone <repository-url>
-cd wissens-assistent
-```
+Für die Evaluierung des RAG-basierten Chatbot-Prototyps wurde das fiktive Musterunternehmen "TechFlow Solutions GmbH" konzipiert. Der Datensatz umfasst 10 systematisch entwickelte Testfälle für RAGAS-Evaluierung:
 
-2. Abhängigkeiten installieren:
-```
-pip install -r requirements.txt
-```
+* PDF-Dokumente (ca. 25 Seiten): Unternehmensrichtlinien, Arbeitsvertrag, Onboarding-Handbuch, Wissenstransfer-Dokumentation
+* Confluence Wiki: 3 strukturierte Wiki-Seiten mit Mitarbeiterverzeichnis, Unternehmens-Wiki und Meeting-Dokumentation
+* Miro-Board: Visualisierung der Organisationsstruktur, Organigramm, Standorte und Arbeitszeitmodelle
 
-3. API-Keys konfigurieren:
-Bearbeite die Datei `config/settings.py` und setze die erforderlichen API-Keys.
 
-## Verwendung
+**Sprache:** Deutsch.
 
-1. Starte die Anwendung:
-```
-streamlit run app.py aktuell nur über venv mit folgendem Befehl: venv\Scripts\activate
+## Datenzugriff und Datenschutz
 
-```
+Die Testdaten wurden selbst erhoben und sind eingeschränkt zugreifbar unter: 
 
-2. Öffne die Anwendung im Browser (normalerweise unter http://localhost:8501).
+* PDF-Dokumente: Zip-Datei Rücksprache Willner
+* Confluence Wiki: https://kroeningrag.atlassian.net/wiki/home
+* Miro-Board: https://miro.com/app/board/uXjVLj41g1I=/
 
-3. Wähle die gewünschten Datenquellen aus und klicke auf "Dokumente verarbeiten".
+## Zeitraum
 
-4. Stelle Fragen an die Wissensbasis über das Chat-Interface.
+Die Datenmodellierung und Testfall-Entwicklung für das fiktive Musterunternehmen "TechFlow Solutions GmbH" erfolgte im Mai 2025. Die Prototyp-Implementierung des RAG-basierten Chatbot-Systems wurde von Mai bis Juni 2025 durchgeführt. Die systematische RAGAS-Evaluierung mit den entwickelten Testfällen fand im Juni und Juli 2025 statt.
 
-## Funktionen
+## Angewendete Software
 
-- Integration mit Confluence zur Extraktion von Wiki-Inhalten
-- Verarbeitung von PDF-Dokumenten
-- Integration mit Miro-Boards zur Extraktion von Inhalten
-- Vektorbasierte Suche mit ChromaDB
-- Conversational AI mit OpenAI
+Entwicklung:
+* Python 3.x https://www.python.org/
+* LangChain Framework https://www.langchain.com/
+* OpenAI API (ChatOpenAI) https://openai.com/
+* Streamlit (Benutzeroberfläche) https://streamlit.io/
 
-## Fehlerbehebung
+Datenverarbeitung:
+* ChromaDB (Vektordatenbank) https://www.trychroma.com/
+* SQLite (Relationale Datenbank) https://www.sqlite.org/
 
-- Bei Problemen mit der Verbindung zu externen APIs überprüfe die Konfiguration in `config/settings.py`.
-- Stelle sicher, dass die erforderlichen API-Keys gültig sind.
-- Bei Fehlern in der Anwendung werden diese in der Streamlit-Oberfläche angezeigt.
+Evaluierung:
+* RAGAS Framework https://docs.ragas.io/
+
+Datenquellen-Integration:
+* Confluence API https://developer.atlassian.com/cloud/confluence/
+* Miro API https://developers.miro.com/
+* PyPDFLoader (LangChain)
+
+## Datenformate und -größe
+
+Die oben genannten Testdaten werden mittels OpenAI-Embeddings in Vektoren umgewandelt un angegleicht.
+
+
+## Qualitätssicherungsmaßnahmen
+
+Technologieauswahl: Gewichtete Bewertungsmatrizen für systematische Komponentenauswahl (RAG-Framework, LLM, Vektordatenbank).
+
+Implementierung: Modulare Systemarchitektur mit standardisierten Schnittstellen für reproduzierbare Entwicklung.
+
+Evaluierung: RAGAS-Framework mit vier etablierten Metriken und systematisch entwickelten Testfällen basierend auf Ground Truth aus Musterunternehmensdaten.
+
+Methodik: Anwendung von Design Science Research (DSR) nach Hevner et al. und Peffers et al.
+
+
+## Ordnerstruktur und Ergebnisse
+
+Die Ergebnisse der Evaluation werden lokal als evaluation_results.csv gespeichert. 
+

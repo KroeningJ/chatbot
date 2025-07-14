@@ -19,3 +19,5 @@ evaluation/umlaut_test.py
 chroma_db/chroma.sqlite3
 config/__pycache__/settings.cpython-311.pyc
 
+chroma_db/chroma.sqlite3
+core/__pycache__/retrieval.cpython-311.pyc
