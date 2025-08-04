@@ -30,7 +30,7 @@ Für die Evaluierung des RAG-basierten Chatbot-Prototyps wurde das fiktive Muste
 
 Die Testdaten wurden selbst erhoben und sind eingeschränkt zugreifbar unter: 
 
-* PDF-Dokumente: Zip-Datei Rücksprache Willner
+* PDF-Dokumente: lokal, Zugriff auf Anfrage unter jns.kroening@googlemail.com
 * Confluence Wiki: https://kroeningrag.atlassian.net/wiki/home
 * Miro-Board: https://miro.com/app/board/uXjVLj41g1I=/
 
