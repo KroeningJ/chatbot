@@ -36,7 +36,7 @@ Die Testdaten wurden selbst erhoben und sind eingeschränkt zugreifbar unter:
 
 ## Zeitraum
 
-Die Datenmodellierung und Testfall-Entwicklung für das fiktive Musterunternehmen "TechFlow Solutions GmbH" erfolgte im Mai 2025. Die Prototyp-Implementierung des RAG-basierten Chatbot-Systems wurde von Mai bis Juni 2025 durchgeführt. Die systematische RAGAS-Evaluierung mit den entwickelten Testfällen fand im Juni und Juli 2025 statt.
+Die Datenmodellierung und Testfall-Entwicklung für das fiktive Musterunternehmen "TechFlow Solutions GmbH" erfolgte im Mai 2025. Die Prototyp-Implementierung des Chatbots wurde von Mai bis Juni 2025 durchgeführt. Die systematische RAGAS-Evaluierung mit den entwickelten Testfällen fand im Juni und Juli 2025 statt.
 
 ## Angewendete Software
 
