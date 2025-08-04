@@ -2,11 +2,11 @@
 
 ## Autor*innen
 
-**Authorin:**
+**Author:**
 Jens Kröning
 Masterstudiengang Wirtschaftskommunikation
 
-**Betreurer:**
+**Betreuerin:**
 Prof. Dr. Olga Willner
 ORCID: 0002-3456-3021-0093 ANPASSEN
 Kontaktadresse: Olga.Willner@HTW-Berlin.de
@@ -80,5 +80,5 @@ Die Ergebnisse der Evaluation werden lokal als evaluation_results.csv gespeicher
 
 ## Anwendungshinweis
 
-Die entwickelte Prototyp-Lösung läuft in einer virtuellen Umgebung. Dafür zuerst venv (virtual enviroment) insatllieren und danach folgenden Befehl in das Terminal eingeben: venv\Scripts\activate
+Die entwickelte Prototyp-Lösung läuft in einer virtuellen Umgebung. Dafür zuerst venv (virtual enviroment) installieren und danach folgenden Befehl in das Terminal eingeben: venv\Scripts\activate
 
