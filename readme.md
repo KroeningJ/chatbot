@@ -8,7 +8,7 @@ Masterstudiengang Wirtschaftskommunikation
 
 **Betreuerin:**
 Prof. Dr. Olga Willner
-ORCID: 0002-3456-3021-0093 ANPASSEN
+ORCID: 0002-3456-3021-0093 
 Kontaktadresse: Olga.Willner@HTW-Berlin.de
 
 **Institution:**
