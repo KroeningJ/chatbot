@@ -60,7 +60,7 @@ Datenquellen-Integration:
 
 ## Datenformate und -größe
 
-Die oben genannten Testdaten werden mittels OpenAI-Embeddings in Vektoren umgewandelt un angegleicht.
+Die oben genannten Testdaten werden mittels OpenAI-Embeddings in Vektoren umgewandelt und angeglichen.
 
 
 ## Qualitätssicherungsmaßnahmen
