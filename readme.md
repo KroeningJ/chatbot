@@ -4,7 +4,7 @@
 
 **Author:**
 Jens Kröning
-Masterstudiengang Wirtschaftskommunikation
+Masterstudiengang Wirtschaftsinformatik
 
 **Betreuerin:**
 Prof. Dr. Olga Willner
